@@ -46,7 +46,7 @@
                     <div class="sumary">
                         <div class="flex justify-between">
                             <span class="text-white">Subtotal</span>
-                            <span class="text-white">{{ 300 }}</span>
+                            <span class="text-white">{{ Math.floor(subtotal) }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-white">Shipping</span>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-white">Total</span>
-                            <span class="text-white">{{ 450 }}</span>
+                            <span class="text-white">{{ Math.floor(subtotal) + 150 }}</span>
                         </div>
                     </div>
 
@@ -72,5 +72,16 @@ import nine from "../assets/9.svg"
 import ten from "../assets/10.svg"
 import eleven from "../assets/11.svg"
 import twelve from "../assets/12.svg"
+import {computed} from "vue";
+import { useProductStore } from "../stores/fakeStoreConfig";
 
+const store = useProductStore();
+const {cartProducts} = store;
+
+const subtotal = computed(()=>{
+    return cartProducts.reduce((a,b)=>{
+        console.log(a.price,b.price, a.price+b.price)
+        return a.price+b.price
+    })
+})
 </script>
