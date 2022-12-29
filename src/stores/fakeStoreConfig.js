@@ -1,6 +1,7 @@
 import { ref, } from 'vue'
 import { defineStore } from 'pinia';
 import { useHttpGet} from '../composables/useHttpGet';
+import { useStorageAsync } from '@vueuse/core'
 
 const httpGet = useHttpGet()
 
@@ -8,7 +9,7 @@ const productsUrl = `/products`;
 const config = ref({})
 
 export const useProductStore = defineStore('configs', () => {
-  const products = ref([])
+  const products = useStorageAsync("products",ref([]))
   const cartProducts = ref([])
   const currentProduct = ref({})
 

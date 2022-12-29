@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: [
@@ -13,8 +14,10 @@ module.exports = {
       }
     },
     colors:{
+      ...colors,
       purple:"#565ABB",
-      blue:"#4DE1C1"
+      blue:"#4DE1C1",
+      fog:"#D9D9D933"
     }
   },
   plugins: [],
