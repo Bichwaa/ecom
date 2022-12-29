@@ -1,10 +1,10 @@
 <template>
     <div class="payment-info bg-purple rounded-xl p-4">
-            <div class="flex gap-16 content-between">
+            <div class="flex gap-16 justify-between">
                 <h3 class="font-bold text-white">Card Details</h3>
                 <img src="https://picsum.photos/100/100" alt="" width="40" height="40" class="rounded-md"/>
             </div>
-            <div class="card-types">
+            <div class="card-types my-1">
                 <h4 class="text-white">Card Type</h4>
                 <div class="flex gap-3">
                     <img :src="nine" alt="card icon"/>
@@ -13,29 +13,29 @@
                     <div class="bg-fog p-2 text-white rounded cursor-pointer">see all</div>
                 </div>
             </div>
-            <div class="form-wrapper">
+            <div class="form-wrapper my-1">
                 <form>
                     <div class="">
-                        <label for="name" class="text-white">Name on card</label>
+                        <label for="name" class="text-white text-xs">Name on card</label>
                         <br>
                         <input type="text" name="name" id="name" class="rounded p-1">
                     </div>
 
                     <div class="">
-                        <label for="card-number" class="text-white">Card Number</label>
+                        <label for="card-number" class="text-white text-xs">Card Number</label>
                         <br>
                         <input type="text" name="card-number" id="card-number" class="rounded p-1">
                     </div>
 
                     <div class="flex gap-3">
                         <div>
-                            <label for="expire" class="text-white">Expiration</label>
+                            <label for="expire" class="text-white text-xs">Expiration Date</label>
                             <br>
                             <input type="text" name="expire" id="expire" class="w-24 rounded p-1">
                         </div>
 
                         <div>
-                            <label for="cvv" class="text-white">CVV</label>
+                            <label for="cvv" class="text-white text-xs">CVV</label>
                             <br>
                             <input type="text" name="cvv" id="cvv" class="w-24 rounded p-1">
                         </div>
