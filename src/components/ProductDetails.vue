@@ -75,8 +75,17 @@ const toggleTruncate = ()=>{
 }
 
 //Methods
+const  exitPrompt = ()=>{
+    let exit = confirm("Product added to cart, return to viewing product list?");
+
+    if (exit != null) {
+    
+    } 
+}
+
 const addToCart =()=>{
     store.addTocart(props.product)
+    exitPrompt()
 }
 </script>
 
