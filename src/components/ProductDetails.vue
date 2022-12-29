@@ -29,7 +29,7 @@
              </span>
 
             <div class="my-4">
-                <button class="p-2 bg-purple text-white rounded-md text-xs">ADD TO CART</button>
+                <button class="p-2 bg-purple text-white rounded-md text-xs" @click="addToCart">ADD TO CART</button>
             </div>
         </div>
     </div>
@@ -39,8 +39,9 @@
 import { ref, computed, onMounted } from 'vue';
 import { useProductStore } from "../stores/fakeStoreConfig";
 
+const store = useProductStore();
+
 onMounted(()=>{
-    const store = useProductStore();
     if(!props.product){
         props.product = store.currentProduct
     }
@@ -71,6 +72,11 @@ const truncated = computed(()=>{
 })
 const toggleTruncate = ()=>{
     truncateDesc.value = !truncateDesc.value;
+}
+
+//Methods
+const addToCart =()=>{
+    store.addTocart(props.product)
 }
 </script>
 
