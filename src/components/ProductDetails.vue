@@ -1,6 +1,6 @@
 <template>
     <div class="details-wrapper flex px-52">
-        <div class="flex flex-col items-center justify-between">
+        <div class="flex flex-col items-center justify-start gap-4">
             <div 
             class="product-img-wrapper p-6 bg-blue"
             :style="{ 'background-image': 'url('+ product.image + ')' }"
@@ -11,14 +11,42 @@
         <div class="info flex flex-col px-6">
             <span class="text-blue font-bold">DESCRIPTION</span>
             <span class="title font-bold text-2xl">{{ product.title }}</span>
-            <span class="description">{{ product.description }}</span>
+            <span class="description">
+                {{ truncateDesc?truncated:product.description }}
+                <span 
+                    v-if="truncateDesc" 
+                    class="text-violet-500 cursor-pointer" 
+                    @click="toggleTruncate">
+                    ...more
+                </span>
 
-            <button class="px-1 py-2 bg-purple text-gray-500">add to cart</button>
+                <span 
+                    v-if="!truncateDesc" 
+                    class="text-violet-500 cursor-pointer" 
+                    @click="toggleTruncate">
+                    |see less
+                </span>
+             </span>
+
+            <div class="my-4">
+                <button class="p-2 bg-purple text-white rounded-md text-xs">ADD TO CART</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useProductStore } from "../stores/fakeStoreConfig";
+
+onMounted(()=>{
+    const store = useProductStore();
+    if(!props.product){
+        props.product = store.currentProduct
+    }
+});
+
+//props
 const props = defineProps({
     product:{
         type:Object,
@@ -30,6 +58,20 @@ const props = defineProps({
         }
     }
 })
+
+//Truncation logic
+const truncateDesc = ref(true)
+const truncated = computed(()=>{
+    const text = props.product.description;
+    if(text?.length>280){
+        return text.slice(0,280)
+    }else{
+        return text
+    }
+})
+const toggleTruncate = ()=>{
+    truncateDesc.value = !truncateDesc.value;
+}
 </script>
 
 <style scoped>

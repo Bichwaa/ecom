@@ -10,8 +10,8 @@ const config = ref({})
 
 export const useProductStore = defineStore('configs', () => {
   const products = useStorageAsync("products",ref([]))
-  const cartProducts = ref([])
-  const currentProduct = ref({})
+  const cartProducts = useStorageAsync("cartProducts",ref([]))
+  const currentProduct = useStorageAsync("currentProduct", ref({}))
 
   async function getProducts(){
     const data = await httpGet(productsUrl);
