@@ -27,5 +27,12 @@ export const useProductStore = defineStore('configs', () => {
     cartProducts.value.push(prod)
   }
 
-  return { products, currentProduct, getProducts, setCurrentProduct, addTocart}
+  function removeFromCart(prod){
+    // cartProducts.value = cartProducts.value.filter((x)=>{
+    //   return x.id==prod.id
+    // })
+    cartProducts.value.sort(function(a, b){return a.id==prod.id}).pop();
+  }
+
+  return { products, currentProduct, cartProducts, getProducts, setCurrentProduct, addTocart, removeFromCart}
 })
