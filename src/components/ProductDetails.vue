@@ -38,8 +38,11 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useProductStore } from "../stores/fakeStoreConfig";
+import { useRouter } from 'vue-router';
 
 const store = useProductStore();
+const router = useRouter()
+
 
 onMounted(()=>{
     if(!props.product){
@@ -79,7 +82,7 @@ const  exitPrompt = ()=>{
     let exit = confirm("Product added to cart, return to viewing product list?");
 
     if (exit != null) {
-    
+        router.push({name:"home"})
     } 
 }
 
